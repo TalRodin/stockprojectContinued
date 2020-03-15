@@ -15,35 +15,16 @@ const Title=styled.div`
     font-weight: bold;
     font-family: 'Lato', sans-serif;
     text-align: center;
-    padding-bottom: 10%;
+    padding-bottom: 5%;
     color: rgba(51,51,51,1)
 `
 const WrapperOne=styled.div`
     float:left;
-    width: 40%;
-    height: 500px;
-    border-radius: 4px;
-    margin-right: 2%;
-    background-color: #f7f7f7;
-    padding: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow:
-        -2.3px -2.3px 3.8px rgba(255,255,255, 0.2),
-        -6.3px -6.3px 10.6px rgba(255,255,255, 0.3),
-        -15.1px -15.1px 25.6px rgba(255,255,255, 0.4),
-        -50px -50px 85px rgba(255,255,255, 0.07),
-        2.3px 2.3px 3.8px rgba(0, 0, 0, 0.024),
-        6.3px 6.3px 10.6px rgba(0, 0, 0, 0.035),
-        15.1px 15.1px 25.6px rgba(0, 0, 0, 0.046),
-        50px 50px 85px rgba(0, 0, 0, 0.07);
-`
-const WrapperTwo=styled.div`
-    float:left;
-    margin-left: 8%;
+    // float:right;
+    // margin-left: 5px;
     padding: 1.2rem 2rem;
     box-shadow:  inset 2px 2px 5px #BABECC, inset -5px -5px 10px #fff;
-    width: 40%;
+    width: 66%;
     color: rgba(51,51,51,1) ;
     box-sizing: border-box;
     transition: all 0.2s ease-in-out;
@@ -60,6 +41,29 @@ const WrapperTwo=styled.div`
       box-shadow:  inset 1px 1px 2px #BABECC, inset -1px -1px 2px #fff;
     }
 `
+const WrapperTwo=styled.div`
+    float:right;
+    // margin-left: 5px;
+    padding: 1.2rem 2rem;
+    box-shadow:  inset 2px 2px 5px #BABECC, inset -5px -5px 10px #fff;
+    width: 32%;
+    color: rgba(51,51,51,1) ;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    height:auto;
+    padding: 30px;
+    background-color:#f7f7f7;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    border: 0;
+      outline: 0;
+      text-shadow: 1px 1px 0 #fff;
+    &:focus {
+      box-shadow:  inset 1px 1px 2px #BABECC, inset -1px -1px 2px #fff;
+    }
+`
+
 const Wrap=styled.div`
     width: 90%;
     position:center;
@@ -70,6 +74,48 @@ const Wrap=styled.div`
 const InlineBlock=styled.div`
     display:inline-block;
 `
+
+const TextWrap = styled.div`
+    border-radius: 6px;
+    position: relative;
+    width:auto;
+    height: 120px;
+    padding: 50px;
+    box-shadow:
+        -2.3px -2.3px 3.8px rgba(255,255,255, 0.2),
+        -6.3px -6.3px 10.6px rgba(255,255,255, 0.3),
+        -15.1px -15.1px 25.6px rgba(255,255,255, 0.4),
+        -50px -50px 85px rgba(255,255,255, 0.07),
+        2.3px 2.3px 3.8px rgba(0, 0, 0, 0.024),
+        6.3px 6.3px 10.6px rgba(0, 0, 0, 0.035),
+        15.1px 15.1px 25.6px rgba(0, 0, 0, 0.046),
+        50px 50px 85px rgba(0, 0, 0, 0.07);
+`
+const WrapperThree=styled.div`
+    float:left;
+    padding: 1.2rem 2rem;
+    box-shadow:  inset 2px 2px 5px #BABECC, inset -5px -5px 10px #fff;
+    width: 80%;
+    
+    color: rgba(51,51,51,1) ;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    // position:relative;
+    height:auto;
+    padding: 30px;
+    background-color:#f7f7f7;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    border: 0;
+      outline: 0;
+      text-shadow: 1px 1px 0 #fff;
+    &:focus {
+      box-shadow:  inset 1px 1px 2px #BABECC, inset -1px -1px 2px #fff;
+    }
+`
+
+
 //Displays Transactions, and gets api data from another website
 
 const API_KEY='FBEEVNPWBGZJJW72'
@@ -134,8 +180,10 @@ class Transactions extends React.Component{
             <Wrap>
                 < WrapperOne>
                     <Title>Stock Information</Title>
+                    <TextWrap>
                     <InlineBlock>
                         <Form getPrice={this.getPrice}/>
+                        <WrapperThree>
                         <Prices 
                             symbol={this.state.symbol}
                             open={this.state.open}
@@ -146,8 +194,10 @@ class Transactions extends React.Component{
                             cash={this.state.count-total}
                             error={this.state.error}
                         />
+                        </WrapperThree>
                     </InlineBlock>
                     <AddSymbol  total={this.state.count-total}/>
+                    </TextWrap>
                 </WrapperOne>
                 < WrapperTwo>
                     <Title>Transactions</Title>

@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledInput = styled.input`
-      float:left;
-      margin-left: 20px;
+      float:right;
+      // margin-left: 10px;
       box-shadow:  inset 2px 2px 5px #BABECC, inset -5px -5px 10px #fff;
       transition: all 0.2s ease-in-out;
       appearance: none;
-      width:90%;
+      width:50%;
       padding:16px;
       background-color:#f7f7f7;
       border-radius: 50px;
@@ -21,7 +21,8 @@ const StyledInput = styled.input`
 `;
 
 const ButtonWrapper=styled.button`
-    float:left;
+    float:right;
+    // position: absolute
     @import url('https://fonts.googleapis.com/css?family=Lato');
     color: rgba(51,51,51,1);
     text-transform: uppercase;
@@ -32,7 +33,7 @@ const ButtonWrapper=styled.button`
     cursor: pointer;
     border: 0;
     outline: 0;
-    position:fixed;
+    // position:fixed;
     border-radius: 3px;
     margin-left:2%;
     padding:16px;
@@ -45,12 +46,13 @@ const ButtonWrapper=styled.button`
       box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
     }
 `
-
 // Form to get stock data. It will give mistake if the stock does not exist
 const Form = props =>(
     <form onSubmit={props.getPrice}>
+        
         <StyledInput type="text" name="symbol" placeholder='Symbol...'/>
         <ButtonWrapper>Get price</ButtonWrapper>   
+       
     </form>
 )
 export default Form

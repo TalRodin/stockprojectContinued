@@ -22,8 +22,6 @@ const TextWrap = styled.div`
         6.3px 6.3px 10.6px rgba(0, 0, 0, 0.035),
         15.1px 15.1px 25.6px rgba(0, 0, 0, 0.046),
         50px 50px 85px rgba(0, 0, 0, 0.07);
-
-    
 `
 const SumWrap = styled.div`
     float:right;
