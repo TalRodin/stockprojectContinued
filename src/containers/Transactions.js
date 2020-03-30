@@ -7,7 +7,7 @@ import {compose} from 'redux'
 import {connect} from 'react-redux'
 import Symbol from './Symbol'
 import styled from 'styled-components';
-
+import Chart from '../LineChart/Chart'
 
 const Title=styled.div`
     @import url('https://fonts.googleapis.com/css?family=Lato');
@@ -122,6 +122,7 @@ const API_KEY='FBEEVNPWBGZJJW72'
 
 class Transactions extends React.Component{
     state={
+        data:undefined,
         symbol: undefined,
         open: undefined,
         high: undefined,
@@ -136,9 +137,10 @@ class Transactions extends React.Component{
         const symbol = e.target.elements.symbol.value
         const api_call = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`)
         const data = await api_call.json()
-        console.log(data)
+        console.log('-----',data)
         if (symbol && !data["Error Message"]){
             this.setState({
+                data: data['Time Series (Daily)'],
                 symbol: data['Meta Data']['2. Symbol'],
                 open: data['Time Series (Daily)'][Object.keys(data['Time Series (Daily)'])[0]]['1. open'],
                 high: data['Time Series (Daily)'][Object.keys(data['Time Series (Daily)'])[0]]['2. high'],
@@ -149,6 +151,7 @@ class Transactions extends React.Component{
             })
         }else{
             this.setState({
+                data:undefined,
                 symbol: undefined,
                 open: undefined,
                 high: undefined,
@@ -160,7 +163,7 @@ class Transactions extends React.Component{
         }  
     }
     render(){
-        console.log(this.props)
+        console.log(this.state.data)
         let content;
         let total=0;
         if(!this.props.symbols){
@@ -203,6 +206,7 @@ class Transactions extends React.Component{
                     <Title>Transactions</Title>
                     {content}
                 </ WrapperTwo>
+                <Chart data={this.state.data}/>
            </Wrap>
         )
     }
