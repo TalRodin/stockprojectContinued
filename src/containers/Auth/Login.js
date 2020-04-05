@@ -65,17 +65,15 @@ flex-direction: column;
 `;
 
 
-
-//Login. The user need to provide the email and password to login. 
-
 const LoginSchema = Yup.object().shape({
     email: Yup.string()
-    .email('Invalid email.')
-    .required('The email is required.'),
+        .email('Invalid email.')
+        .required('The email is required.'),
     password: Yup.string()
-    .required('The password is required.')
-    .min(8,'Too short.'),
+        .required('The password is required.')
+        .min(8,'Too short.'),
 })
+
 const Login = ({login, loading, error, cleanUp}) =>{
     useEffect(()=>{
         return ()=>{

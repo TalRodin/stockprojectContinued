@@ -5,7 +5,6 @@ import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import rootReducer from './reducers'
 
-//To use firebase
 const rrfConfig ={
   userProfile: 'users',
   useFirestoreForProfile: true,
@@ -14,9 +13,10 @@ const rrfConfig ={
 
 
 const composeEnhancers =
-  process.env.NODE_ENV === 'development'
+    process.env.NODE_ENV === 'development'
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : compose;
+    
 const store = createStore(rootReducer, composeEnhancers(
   reactReduxFirebase(firebase, rrfConfig),
   reduxFirestore(firebase),

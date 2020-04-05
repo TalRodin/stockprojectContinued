@@ -2,7 +2,6 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-//Firebase configurations
 const config = {
     apiKey: process.env.REACT_APP_APIKEY,
     authDomain: "task-bdb62.firebaseapp.com",

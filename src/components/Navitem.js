@@ -45,6 +45,7 @@ const Buttonwrap =styled.div`
 `
 
 const NavItem = ({link, children, clicked}) =>{
+    
     return (
         <Li>
             <StyledNavLink  onClick={clicked} to={link}>
