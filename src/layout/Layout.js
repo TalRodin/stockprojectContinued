@@ -3,14 +3,20 @@ import Navbar from '../components/Navbar'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 
+const MainWrapper=styled.div`
+ width: 100%;
+ min-height:calc(100vh-6rem);
+ margin-top: 6rem;
+`
 
 const Layout = ({children, loggedIn}) =>(
-  <div>
+  
+  <>
       <Navbar loggedIn={loggedIn}/> 
-      <div>
+      <MainWrapper>
           {children}
-      </div>
-  </div>
+      </MainWrapper>
+  </>
 )
 const mapStateToProps = ({firebase}) =>({
   loggedIn: firebase.auth

@@ -5,8 +5,8 @@ import {Provider} from 'react-redux'
 import App from './App'
 import store from './store'
 import GlobalStyles from './utils/global';
-
-
+import {ThemeProvider} from 'styled-components';
+import theme from './utils/theme'
 const root = document.getElementById('root')
 
 
@@ -17,10 +17,14 @@ store.firebaseAuthIsReady.then(()=>{
     ReactDOM.render(
         <Provider store={store}>
             <BrowserRouter>
-            <>
-                <App />
-                <GlobalStyles/>
-            </>
+            
+            <ThemeProvider theme={theme}>
+                <>
+                    <App />
+                    <GlobalStyles/>
+                </>
+            </ThemeProvider>
+            
             </BrowserRouter>
         </Provider>, document.getElementById('root'))
 })

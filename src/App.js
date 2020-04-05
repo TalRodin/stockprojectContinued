@@ -66,9 +66,6 @@ const BackgroundThree = styled.div`
     animation: 80s ${fadeInThree} infinite linear;
 `
 
-//Routes 
-
-
 const App = ({loggedIn,emailVerified}) => {
     let routes;
     if (loggedIn && !emailVerified){

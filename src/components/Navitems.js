@@ -4,13 +4,11 @@ import styled from 'styled-components';
 
 const Ul = styled.ul`
   display: flex;
-  flex-direction: row;
   align-items: center;
   height: 100%;
 `;
 const Nav = styled.nav`
-  margin:0;
-  float: right;
+display: flex;
 `;
 const NavItems = ({clicked, loggedIn}) =>{
     let links
