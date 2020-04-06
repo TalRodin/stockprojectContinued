@@ -122,7 +122,7 @@ const SignUp = ({signUp, loading, error, cleanUp}) =>{
                             component={Input} />
                         {/* <ErrorMessage name='confirmPassword'/> */}
                         <Button disabled={!isValid || isSubmitting} loading={loading ? 'Signing up' : null} type="submit">SignUp</Button>
-                        <Message >{error}</Message>
+                        <Message error show={error}>{error}</Message>
                     </StyledForm>
                 </FormWrapper>
             )}
