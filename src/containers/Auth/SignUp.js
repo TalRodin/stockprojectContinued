@@ -8,42 +8,20 @@ import * as actions from '../../store/actions'
 import Message from '../../components/UI/Message'
 import styled from 'styled-components';
 
-const ButtonWrapper=styled.button`
-      @import url('https://fonts.googleapis.com/css?family=Lato');
-      color:#f1555a;
-      text-transform: uppercase;
-      font-family: 'Lato', sans-serif;
-      font-weight: bold;
-      box-shadow: -5px -5px 20px #FFF,  5px 5px 20px #BABECC;
-      transition: all 0.2s ease-in-out;
-      cursor: pointer;
-      border: 0;
-      outline: 0;
-      width:30%;
-      border-radius: 50px;
-      padding:16px;
-      background-color:#f7f7f7;
-      text-shadow: 1px 1px 0 #FFF;
-      &:hover {
-        box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
-      }
 
-      &:active {
-        box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
-      }
-`
 const FormWrapper = styled.div`
-  width: 100%;
-  max-width: 60rem;
-  margin: 0 auto;
-  border-radius: 0.7rem;
-  padding: 8rem 7rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7;;
-  box-shadow:
+float:center;
+width: 100%;
+max-width: 50rem;
+margin: 0 auto;
+border-radius: 0.7rem;
+padding: 4rem 8rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: var(--color-main);
+box-shadow:
     -2.3px -2.3px 3.8px rgba(255,255,255, 0.2),
     -6.3px -6.3px 10.6px rgba(255,255,255, 0.3),
     -15.1px -15.1px 25.6px rgba(255,255,255, 0.4),
@@ -55,16 +33,22 @@ const FormWrapper = styled.div`
 `;
 
 const StyledForm = styled(Form)`
-  display: flex;
-  position: relative;
-  align-items: center;
-  width: 100%;
-  flex-direction: column;
+    color: rgba(51,51,51,1) ;
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
 `;
 
-//Sign up form. The user after signing up will receive an email on his account to confirm. 
-//After confirmation the user can return back and login their acount.
-
+const H=styled.h3`
+        @import url('https://fonts.googleapis.com/css?family=Lato');
+        font-family: 'Lato', sans-serif;
+        color: rgba(51,51,51,1) ;
+        text-transform: uppercase;
+        padding-bottom: 1rem;
+        
+`
 
 const SignUpSchema = Yup.object().shape({
     firstName:Yup.string().required('Your first name is required')
@@ -87,7 +71,7 @@ const SignUp = ({signUp, loading, error, cleanUp}) =>{
         }
     },[cleanUp])
     return (
-        <div>
+       
             <Formik
             initialValues={{
                 firstName:'',
@@ -107,42 +91,43 @@ const SignUp = ({signUp, loading, error, cleanUp}) =>{
             >{({isSubmitting, isValid})=>
             (
                 <FormWrapper>
+                    <H>Sign up for an account</H>
                     <StyledForm>
                         <Field type='firstName'
                             name='firstName'
                             placeholder='Your First Name...' 
                             component={Input}
                             />
-                        <ErrorMessage name='firstName'/>
+                        {/* <ErrorMessage name='firstName'/> */}
                         <Field type='lastName'
                             name='lastName'
                             placeholder='Your Last Name...' 
                             component={Input}
                             />
-                        <ErrorMessage name='lastName'/>
+                        {/* <ErrorMessage name='lastName'/> */}
                         <Field type='email'
                             name='email'
                             placeholder='Your Email...' 
                             component={Input}
                             />
-                        <ErrorMessage name='email'/>
+                        {/* <ErrorMessage name='email'/> */}
                         <Field type='password'
                             name='password'
                             placeholder='Your Password...'
                             component={Input} />
-                        <ErrorMessage name='password'/>
+                        {/* <ErrorMessage name='password'/> */}
                         <Field type='password'
                             name='confirmPassword'
                             placeholder='Confirm Password...'
                             component={Input} />
-                        <ErrorMessage name='confirmPassword'/>
-                        <ButtonWrapper disabled={!isValid || isSubmitting} loading={loading ? 'Signing up' : null} type="submit">SignUp</ButtonWrapper>
+                        {/* <ErrorMessage name='confirmPassword'/> */}
+                        <Button disabled={!isValid || isSubmitting} loading={loading ? 'Signing up' : null} type="submit">SignUp</Button>
                         <Message >{error}</Message>
                     </StyledForm>
                 </FormWrapper>
             )}
             </Formik>
-        </div>
+      
     )
 }
 const mapStateToProps = ({auth}) =>({

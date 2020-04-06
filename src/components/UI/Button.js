@@ -12,11 +12,12 @@ const ButtonWrapper=styled.button`
       cursor: pointer;
       border: 0;
       outline: 0;
-      border-radius: 50px;
-      // display:inline-block;
-      margin-right:5%;
-      padding:16px;
-      background-color:#f7f7f7;
+      width:100%;
+      
+      box-sizing: border-box;
+      border-radius: 3rem;
+      padding: 1.2rem 2rem;
+      background-color:var(--color-main);
       text-shadow: 1px 1px 0 #FFF;
       &:hover {
         box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
@@ -25,21 +26,20 @@ const ButtonWrapper=styled.button`
       &:active {
         box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
       }
-`
-
-const Wrapper=styled.div`
-  float:left;
-  text-align:center;
+      &:disabled{
+        cursor: not-allowed;
+        
+      }
 `
 
 
 const Button = ({children, disabled, loading, ...rest}) =>{
     return (
-      <Wrapper>
+     
         <ButtonWrapper disabled={disabled} {...rest}>
             {loading ? loading: children}
         </ButtonWrapper>
-      </Wrapper>
+      
     )
 }
 
