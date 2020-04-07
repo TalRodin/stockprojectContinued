@@ -50,6 +50,12 @@ const H=styled.h3`
         
 `
 
+const MessageWrapper=styled.div`
+    position: absolute;
+    bottom: 0;
+`
+
+
 const SignUpSchema = Yup.object().shape({
     firstName:Yup.string().required('Your first name is required')
     .min(3,'Too short').max(25, 'Too long'),
@@ -122,7 +128,14 @@ const SignUp = ({signUp, loading, error, cleanUp}) =>{
                             component={Input} />
                         {/* <ErrorMessage name='confirmPassword'/> */}
                         <Button disabled={!isValid || isSubmitting} loading={loading ? 'Signing up' : null} type="submit">SignUp</Button>
-                        <Message error show={error}>{error}</Message>
+                        
+                        <MessageWrapper>
+
+                            <Message error show={error}>{error}</Message>
+                        </MessageWrapper>
+                        
+
+
                     </StyledForm>
                 </FormWrapper>
             )}

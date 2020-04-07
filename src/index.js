@@ -7,10 +7,28 @@ import store from './store'
 import GlobalStyles from './utils/global';
 import {ThemeProvider} from 'styled-components';
 import theme from './utils/theme'
+import Loader from './components/UI/Loader'
+import styled from 'styled-components'
+
+
+const Wrapper =styled.div`
+width:100%
+height: 100vh;
+display:flex;
+align-items:center;
+justify-content: center;
+`
+
 const root = document.getElementById('root')
 
 
-ReactDOM.render(<div>Loading...</div>,root)
+ReactDOM.render(
+           <ThemeProvider theme={theme}>
+                <>
+                <Wrapper><Loader /></Wrapper>
+                    <GlobalStyles/>
+                </>
+            </ThemeProvider>,root)
 
 
 store.firebaseAuthIsReady.then(()=>{

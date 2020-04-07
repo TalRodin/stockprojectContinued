@@ -10,7 +10,7 @@ const P=styled.p`
         else return 'var(--color-main)';
     }};
     opacity: ${({show}) => (show ? '1' : '0')};
-    transform: translateY(${({show}) => (show ? '20px' : '0px')});
+    transform: translateY(${({show}) => (show ? '30px' : '0px')});
     transform: all 0.2s;
 `
 
