@@ -27,7 +27,7 @@ export const signUp = data => async (dispatch,
     dispatch({type: actions.AUTH_END})
 }
 
-export const signOut = () =>async (
+export const signOut = () => async (
     dispatch, getState, {getFirebase}
 )=>{
     const firebase=getFirebase()
@@ -67,5 +67,16 @@ export const verifyEmail = () =>async(dispatch,getState,{getFirebase})=>{
         dispatch({type:actions.VERIFY_SUCCESS})
     }catch(err){
         dispatch({type:actions.VERIFY_FAIL, payload:err.message})
+    }
+}
+
+export const recoverPassword = data => async (dispatch, getState, {getFirebase})=>{
+    const firebase = getFirebase();
+    dispatch({type:actions.RECOVER_START})
+    try{
+        await firebase.auth().sendPasswordResetEmail(data.email)
+        dispatch({type:actions.RECOVER_SUCCESS})
+    }catch(err){
+        dispatch({type:actions.RECOVER_FAIL, payload: err.message})
     }
 }

@@ -10,6 +10,10 @@ export const VERIFY_START ='VERIFY_START'
 export const VERIFY_SUCCESS='VERIFY_SUCCESS'
 export const VERIFY_FAIL ='VERIFY_FAIL'
 
+export const RECOVER_START ='RECOVER_START'
+export const RECOVER_SUCCESS='RECOVER_SUCCESS'
+export const RECOVER_FAIL ='RECOVER_FAIL'
+
 export const BUY_START = 'BUY_START'
 export const BUY_SUCCESS= 'BUY_SUCCESS'
 export const BUY_FAIL = 'BUY_FAIL'

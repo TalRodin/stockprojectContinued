@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import Logout from './containers/Auth/Logout'
 import VerifyEmail from './containers/Auth/VerifyEmail'
 import styled, { keyframes } from 'styled-components'
+import RecoverPassword from './containers/Auth/RecoverPassword'
 const fadeInOne = keyframes`
   from {
     transform :rotateZ(0deg);
@@ -92,6 +93,7 @@ const App = ({loggedIn,emailVerified}) => {
         <Switch>
             <Route exact path='/login' component={Login}></Route>
             <Route exact path='/signup' component={SignUp}></Route>
+            <Route exact path='/recover' component={RecoverPassword}></Route>
             <Redirect to='/login'/>
         </Switch>
         )
