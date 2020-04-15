@@ -17,6 +17,7 @@ const NavItems = ({clicked, loggedIn}) =>{
             <Ul>
                 <NavItem clicked={clicked} link='/'>Transactions</NavItem>
                 <NavItem clicked={clicked} link='/portfolio'>Portfolio</NavItem>
+                <NavItem clicked={clicked} link='/profile'>Account</NavItem>
                 <NavItem clicked={clicked} link='/logout'>Logout</NavItem>
             </Ul>  
         )

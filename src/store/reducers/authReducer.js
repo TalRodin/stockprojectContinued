@@ -10,13 +10,20 @@ const initialState = {
     recoverPassword: {
         error:null,
         loading: false
+    },
+    profileEdit: {
+        error:null,
+        loading: false
     }
 }
 
 export default (state=initialState, {type,payload})=>{
     switch(type){
         case actions.CLEAN_UP:
-            return{...state, error: null, loading: false, verifyEmail:{...state.verifyEmail, loading:false, error:null},recoverPassword:{...state.recoverPassword, loading:false, error:null} }
+            return{...state, error: null, loading: false, verifyEmail:{...state.verifyEmail, loading:false, error:null},
+            recoverPassword:{...state.recoverPassword, loading:false, error:null},
+            profileEdit:{...state.profileEdit, loading:false, error:null}
+        }
         case actions.AUTH_START:
             return{...state, loading: true}
         case actions.AUTH_END:
@@ -39,6 +46,13 @@ export default (state=initialState, {type,payload})=>{
             return {...state, recoverPassword:{...state.recoverPassword, loading:false, error:false}}
         case actions.RECOVER_FAIL:
             return {...state, recoverPassword:{...state.recoverPassword, loading:false, error:payload}}
+
+        case actions.PROFILE_EDIT_START:
+            return {...state, verifyEmail:{...state.verifyEmail, loading:true}}
+        case actions.PROFILE_EDIT_SUCCESS:
+            return {...state,verifyEmail:{...state.verifyEmail, loading:false, error:false}}
+        case actions.PROFILE_EDIT_FAIL:
+            return {...state, verifyEmail:{...state.verifyEmail, loading:false, error:payload}}
 
         default:
             return state

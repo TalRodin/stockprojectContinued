@@ -80,3 +80,15 @@ export const recoverPassword = data => async (dispatch, getState, {getFirebase})
         dispatch({type:actions.RECOVER_FAIL, payload: err.message})
     }
 }
+
+export const editProfile = data => async (dispatch, getState, {getFirebase, getFirestore})=>{
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+    dispatch({type:actions.PROFILE_EDIT_START})
+    try{
+        // await firebase.auth().sendPasswordResetEmail(data.email)
+        dispatch({type:actions.PROFILE_EDIT_SUCCESS})
+    }catch(err){
+        dispatch({type:actions.PROFILE_EDIT_FAIL, payload: err.message})
+    }
+}
