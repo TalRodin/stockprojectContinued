@@ -6,6 +6,7 @@ import Message from '../../components/UI/Message'
 import * as Yup from 'yup'
 import Input from '../../components/UI/Input'
 import Button from '../../components/UI/Button'
+import * as actions from '../../store/actions/authActions';
 
 const FormWrapper = styled.div`
 float:center;
@@ -71,7 +72,7 @@ const ProfileSchema = Yup.object().shape({
 
 })
 
-const Profile = ({firebase}) =>{
+const Profile = ({firebase,editProfile, loading, error}) =>{
     if (!firebase.profile.isLoaded) return null;
     return (
        
@@ -85,6 +86,7 @@ const Profile = ({firebase}) =>{
               }}
             validationSchema={ProfileSchema}
             onSubmit={
+
                 async( values, {setSubmitting})=>
                 {
                     console.log(values)
@@ -124,7 +126,7 @@ const Profile = ({firebase}) =>{
                             placeholder='Confirm Password...'
                             component={Input} />
                         {/* <ErrorMessage name='confirmPassword'/> */}
-                        <Button disabled={!isValid || isSubmitting}  type="submit">Edit</Button>
+                        <Button disabled={!isValid || isSubmitting} loading={loading ? 'Editing...':null} type="submit">Edit</Button>
                         
                         <MessageWrapper>
 
@@ -141,11 +143,12 @@ const Profile = ({firebase}) =>{
     )
 }
 
-const mapStateToProps = (firebase,auth) =>({
+const mapStateToProps = ({firebase,auth}) =>({
     firebase,
-    // loading: auth.profileEdit.loading,
+    loading: auth.profileEdit.loading,
+    error:auth.profileEdit.error
 })
 const mapDispatchToProps ={
-
+    editProfile: actions.editProfile
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Profile)
