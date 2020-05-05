@@ -48,11 +48,11 @@ export default (state=initialState, {type,payload})=>{
             return {...state, recoverPassword:{...state.recoverPassword, loading:false, error:payload}}
 
         case actions.PROFILE_EDIT_START:
-            return {...state, verifyEmail:{...state.verifyEmail, loading:true}}
+            return {...state, profileEdit:{...state.profileEdit, loading:true}}
         case actions.PROFILE_EDIT_SUCCESS:
-            return {...state,verifyEmail:{...state.verifyEmail, loading:false, error:false}}
+            return {...state,profileEdit:{...state.profileEdit, loading:false, error:false}}
         case actions.PROFILE_EDIT_FAIL:
-            return {...state, verifyEmail:{...state.verifyEmail, loading:false, error:payload}}
+            return {...state, profileEdit:{...state.vprofileEdit, loading:false, error:payload}}
 
         default:
             return state

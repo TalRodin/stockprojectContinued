@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import {connect} from 'react-redux'
 import {Formik, Field, Form} from 'formik'
 import styled from 'styled-components'
@@ -7,6 +7,9 @@ import * as Yup from 'yup'
 import Input from '../../components/UI/Input'
 import Button from '../../components/UI/Button'
 import * as actions from '../../store/actions/authActions';
+import Modal from '../../components/UI/Modal'
+
+
 
 const FormWrapper = styled.div`
 float:center;
@@ -53,6 +56,20 @@ const MessageWrapper=styled.div`
     position: absolute;
     bottom: 0;
 `
+const DeleteWrapper = styled.div`
+    cursor:pointer;
+    color: #fff;
+    font-size:1.3rem;
+    transition: all 0.2s;
+
+    &:hover{
+        transform: translateY(-3px)
+    }
+    &:active{
+        transform: translateY(2px)
+    }
+`
+
 const ProfileSchema = Yup.object().shape({
     firstName:Yup.string().required('Your first name is required')
     .min(3,'Too short').max(25, 'Too long'),
@@ -72,10 +89,16 @@ const ProfileSchema = Yup.object().shape({
 
 })
 
-const Profile = ({firebase,editProfile, loading, error}) =>{
+const Profile = ({firebase,editProfile, close, loading, error, cleanUp}) =>{
+    useEffect(()=>{
+        return ()=>{
+            cleanUp();
+        }
+    },[cleanUp])
+    const [modalOpened, setModalOpened] = useState(false)
     if (!firebase.profile.isLoaded) return null;
     return (
-       
+       <>
             <Formik
             initialValues={{
                 firstName: firebase.profile.firstName,
@@ -89,7 +112,7 @@ const Profile = ({firebase,editProfile, loading, error}) =>{
 
                 async( values, {setSubmitting})=>
                 {
-                    console.log(values)
+                    await editProfile(values)
                     setSubmitting(false) 
                 }
             }
@@ -129,17 +152,18 @@ const Profile = ({firebase,editProfile, loading, error}) =>{
                         <Button disabled={!isValid || isSubmitting} loading={loading ? 'Editing...':null} type="submit">Edit</Button>
                         
                         <MessageWrapper>
-
                             <Message error show={error}>{error}</Message>
                         </MessageWrapper>
-                        
-
-
+                        <MessageWrapper>
+                            <Message success show={error===false}>Profile was updated!</Message>
+                        </MessageWrapper>
+                        <DeleteWrapper onClick={()=>setModalOpened(true)}>Delete my account</DeleteWrapper>
                     </StyledForm>
                 </FormWrapper>
             )}
             </Formik>
-      
+            <Modal opened={modalOpened} close={()=>setModalOpened(false)}>This is a modal</Modal>
+            </>
     )
 }
 
@@ -149,6 +173,7 @@ const mapStateToProps = ({firebase,auth}) =>({
     error:auth.profileEdit.error
 })
 const mapDispatchToProps ={
-    editProfile: actions.editProfile
+    editProfile: actions.editProfile,
+    cleanUp: actions.clean
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Profile)

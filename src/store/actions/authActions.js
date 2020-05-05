@@ -98,7 +98,7 @@ export const editProfile = data => async (dispatch, getState, {getFirebase, getF
             lastName:data.lastName
         })
         if(data.password.length>0){
-            user.updatePassword(data.password)
+            await user.updatePassword(data.password)
         }
         dispatch({type:actions.PROFILE_EDIT_SUCCESS})
     }catch(err){

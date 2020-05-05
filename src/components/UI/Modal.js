@@ -33,7 +33,6 @@ const InsideWrapper = styled.div`
     padding: 4rem 3rem;
 `;
 
-// The window that pops up when the user decided to buy the stock
 const Modal = ({ opened, close, children }) => {
   return ReactDOM.createPortal(
     <>
