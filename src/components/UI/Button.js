@@ -13,7 +13,7 @@ const ButtonWrapper=styled.button`
       border: 0;
       outline: 0;
       width:100%;
-      
+      width: ${({contain})=>contain ? 'auto' : '100%'}
       box-sizing: border-box;
       border-radius: 3rem;
       padding: 1.2rem 2rem;
@@ -33,7 +33,7 @@ const ButtonWrapper=styled.button`
 `
 
 
-const Button = ({children, disabled, loading, ...rest}) =>{
+const Button = ({children, disabled, loading, contain, ...rest}) =>{
     return (
      
         <ButtonWrapper disabled={disabled} {...rest}>

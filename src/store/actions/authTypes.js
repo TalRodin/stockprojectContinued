@@ -22,3 +22,5 @@ export const BUY_START = 'BUY_START'
 export const BUY_SUCCESS= 'BUY_SUCCESS'
 export const BUY_FAIL = 'BUY_FAIL'
 
+export const DELETE_START = 'DELETE_START';
+export const DELETE_FAIL = 'DELETE_FAIL';

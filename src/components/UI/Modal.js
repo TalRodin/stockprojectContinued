@@ -10,7 +10,7 @@ const WrappedModal = styled.div`
     left: 50%;
     transform: ${({ opened }) =>
       opened ? 'translate(-50%, -50%)' : 'translate(-50%, -150%)'};
-    display: flex;
+      display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 150;
