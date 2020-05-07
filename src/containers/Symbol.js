@@ -42,7 +42,6 @@ const Symbol = ({symbol}) =>{
         <TextWrap>
           (BUY) <Bold>{symbol.symbol}</Bold> · {symbol.quantity} Shares <SumWrap>@ {symbol.price}</SumWrap>
           {/* <Line></Line> */}
-          
         </TextWrap>
     )
 }

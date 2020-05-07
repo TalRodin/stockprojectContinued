@@ -54,7 +54,6 @@ const StyledForm = styled(Form)`
     flex-direction: column;
 `;
 
-//Here we are able to buy the stock. By submitting the required information. 
 
 const StockSchema=Yup.object().shape({
     symbol:Yup.string().required('The symbol is required'),
@@ -121,7 +120,7 @@ const AddSymbol = ({addSymbol, loading, error}) =>{
                         </Button>
                     </div>
                 <div>
-                    <Message show={error}>
+                    <Message error show={error}>
                         {error}
                     </Message>
                 </div>

@@ -1,6 +1,6 @@
 import * as actions from './authTypes';
 
-// Add a stock to the database
+
 export const addSymbol = data => async (
   dispatch,
   getState,
