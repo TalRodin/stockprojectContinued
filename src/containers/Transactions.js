@@ -3,6 +3,7 @@ import Form from '../components/getStock/Form'
 import Prices from '../components/getStock/Prices'
 import {firestoreConnect} from 'react-redux-firebase'
 import AddSymbol from './AddSymbol'
+
 import {compose} from 'redux'
 import {connect} from 'react-redux'
 import Symbol from './Symbol'
@@ -114,10 +115,6 @@ const WrapperThree=styled.div`
       box-shadow:  inset 1px 1px 2px #BABECC, inset -1px -1px 2px #fff;
     }
 `
-
-
-//Displays Transactions, and gets api data from another website
-
 const API_KEY='FBEEVNPWBGZJJW72'
 
 class Transactions extends React.Component{
@@ -137,7 +134,6 @@ class Transactions extends React.Component{
         const symbol = e.target.elements.symbol.value
         const api_call = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`)
         const data = await api_call.json()
-        console.log('-----',data)
         if (symbol && !data["Error Message"]){
             this.setState({
                 data: data['Time Series (Daily)'],
@@ -169,7 +165,7 @@ class Transactions extends React.Component{
         if(!this.props.symbols){
             content = <p>Loading...</p>
         }
-        else if (!this.props.symbols[this.props.userId] && this.props.requested[`todos/${this.props.userId}`]){
+        else if (!this.props.symbols[this.props.userId] && this.props.requested[`todos/${this.props.userId}`] || this.props.symbols[this.props.userId].todos.length===0){
             content = <p>No bought stocks yet</p>
         }
         else{
@@ -200,6 +196,7 @@ class Transactions extends React.Component{
                         </WrapperThree>
                     </InlineBlock>
                     <AddSymbol  total={this.state.count-total}/>
+                    
                     </TextWrap>
                 </WrapperOne>
                 < WrapperTwo>

@@ -43,3 +43,26 @@ export const addSymbol = data => async (
   }
 };
 
+export const deleteTrans = id => async(dispatch, getState, {getFirestore}) =>{
+  const firestore = getFirestore();
+  const userId = getState().firebase.auth.uid;
+  dispatch({type:actions.DELETE_TRANS_START})
+  try{
+    const res = await firestore
+      .collection('todos')
+      .doc(userId)
+      .get();
+    
+    const previousTrans = res.data().todos
+    const newTrans = previousTrans.filter(todo=>todo.id !==id)
+    await firestore.collection('todos').doc(userId).update({
+      todos: newTrans
+    })
+
+
+
+    dispatch({type:actions.DELETE_TRANS_SUCCESS})
+  }catch(err){
+    dispatch({type: actions.DELETE_TRANS_FAIL, payload: err.message})
+  }
+}
