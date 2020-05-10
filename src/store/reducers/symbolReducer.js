@@ -1,7 +1,5 @@
 import * as actions from '../actions/authTypes'
 
-
-
 const initialState = {
     error: null,
     loading: false,

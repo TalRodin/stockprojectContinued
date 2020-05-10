@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {connect} from 'react-redux'
 import Button from '../components/UI/Button'
 import Modal from '../components/UI/Modal'
@@ -16,12 +16,12 @@ const DeleteTrans = ({show, close, symbol, deleteTrans, error, loading}) =>{
                     type='submit'
                     onClick={()=>deleteTrans(symbol.id)}
                     disabled={loading}
-                    loading={loading ? 'Deleting...': null}
-                >Delete</Button>
+                    loading={loading ? 'Deleting...': null}>Delete</Button>
                 <Button
-                    contain
-                    onClick={close}
-                >Cancel</Button>
+                        onClick={close}
+                        >
+                            Cancel
+                        </Button>
             </div>
             <div>
                 <Message error show={error}>

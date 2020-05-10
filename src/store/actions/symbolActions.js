@@ -58,11 +58,40 @@ export const deleteTrans = id => async(dispatch, getState, {getFirestore}) =>{
     await firestore.collection('todos').doc(userId).update({
       todos: newTrans
     })
-
-
-
     dispatch({type:actions.DELETE_TRANS_SUCCESS})
   }catch(err){
     dispatch({type: actions.DELETE_TRANS_FAIL, payload: err.message})
   }
 }
+
+export const editTrans = (id, data) => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
+  const firestore = getFirestore();
+  
+  const userId = getState().firebase.auth.uid;
+  dispatch({ type: actions.BUY_START });
+  try {
+    const res = await firestore
+      .collection('todos')
+      .doc(userId)
+      .get();
+    const todos = res.data().todos;
+    console.log(res.data().todos)
+    const index = todos.findIndex(todo => todo.id === id);
+    todos[index].quantity= data.quantity;
+    console.log(data)
+    await firestore
+      .collection('todos')
+      .doc(userId)
+      .update({
+        todos,
+      });
+    dispatch({ type: actions.BUY_SUCCESS });
+    return true;
+  } catch (err) {
+    dispatch({ type: actions.BUY_FAIL, payload: err.message });
+  }
+};

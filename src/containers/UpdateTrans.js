@@ -1,12 +1,12 @@
 import React,{useState} from 'react'
 import {connect} from 'react-redux'
-import Modal from '../components/UI/Modal'
 import Button from '../components/UI/Button'
-import {Formik, Field, Form, isInteger} from 'formik'
-import Input from '../components/UI/Input'
+import Modal from '../components/UI/Modal'
+import * as actions from '../store/actions'
 import Message from '../components/UI/Message'
 import * as Yup from 'yup'
-import * as actions from '../store/actions'
+import {Formik, Field, Form, isInteger} from 'formik'
+import Input from '../components/UI/Input'
 import styled from 'styled-components';
 
 const ButtonWrapper=styled.button`
@@ -53,37 +53,31 @@ const StyledForm = styled(Form)`
     width: 100%;
     flex-direction: column;
 `;
-
-
 const StockSchema=Yup.object().shape({
     symbol:Yup.string().required('The symbol is required'),
     quantity: Yup.number().integer('The quantity must be the whole number').required('The quantity is required'),
     price:Yup.number().required('The price is required')
 })
-const AddSymbol = ({addSymbol, loading, error}) =>{
-    const [isOpened, setisOpened] = useState(false);
+const UpdateTrans = ({show, close, symbol, editTrans, error, loading}) =>{
+    console.log(editTrans)
     return (
-        <>
-        <ButtonWrapper onClick={() => setisOpened(true)}>
-            Buy stock
-        </ButtonWrapper>
-        <Modal opened={isOpened} close={() => setisOpened(false)}>
-        <Formik
-        initialValues={{
-            symbol:'',
-            quantity:'',
-            price:''
+        <Modal opened={show} close={close}>
+           <Formik
+            initialValues={{
+                symbol: symbol.symbol,
+                quantity: symbol.quantity ,
+                price:symbol.price
         }}
         validationSchema={StockSchema}
         onSubmit={async (values,{setSubmitting, resetForm})=>{
-            const res = await addSymbol(values)
+            
+            const res = await editTrans(symbol.id,values)
             setSubmitting(false)
             if(res){
-                setisOpened(false)
+                close()
             }
             resetForm()
-            }}
-        >
+            }}>
         {({isSubmitting, isValid, resetForm})=>(
             <FormWrapper>
                 <StyledForm>
@@ -107,17 +101,16 @@ const AddSymbol = ({addSymbol, loading, error}) =>{
                     />
                     <div>
                         <Button
+                            contain
                             type='submit'
                             disabled={!isValid || isSubmitting}
-                            loading={loading ? 'Adding...': null}
-                        >
-                            Submit order
+                            loading={loading ? 'Updating transaction': null}>
+                            Update
                         </Button>
                         <Button
-                        contain
-                        type='button'
-                        onClick={()=>{setisOpened(false); resetForm()}}
-                        >
+                            contain
+                            type='button'
+                            onClick={()=>{close(); resetForm()}}>
                             Cancel
                         </Button>
                     </div>
@@ -131,14 +124,16 @@ const AddSymbol = ({addSymbol, loading, error}) =>{
             )}
             </Formik>
         </Modal>
-        </>
     )
 }
-const mapStateToProps = ({symbols})=>({
-    loading:symbols.loading,
-    error:symbols.error
+
+const mapStateToProps = ({symbols}) => ({
+    error: symbols.error,
+    loading: symbols.loading,
+    
 })
 const mapDispatchToProps = {
-    addSymbol:actions.addSymbol
+    editTrans: actions.editTrans
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AddSymbol)
+
+export default connect(mapStateToProps,mapDispatchToProps)(UpdateTrans)

@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import styled from 'styled-components';
 import DeleteTrans from './DeleteTrans'
+import UpdateTrans from './UpdateTrans'
 const TextWrap = styled.div`
     @import url('https://fonts.googleapis.com/css?family=Lato');
     font-size: 16px;
@@ -61,16 +62,17 @@ const ButtonWrapper=styled.button`
     }
 `
 const Symbol = ({symbol}) =>{
-    const [isDeleting, setisDeleting] = useState(false)
-    console.log(setisDeleting)
+    const [isDeleting, setisDeleting] = useState(false);
+    const [isUpdating, setisUpdating] = useState(false);
+    console.log(symbol)
     return (
         <TextWrap>
           (BUY) <Bold>{symbol.symbol}</Bold> · {symbol.quantity} Shares <SumWrap>@ {symbol.price}</SumWrap>
           {/* <Line></Line> */}
-          <ButtonWrapper onClick={()=>setisDeleting(true)}>
-              <DeleteTrans symbol={symbol} show={isDeleting} close={()=>setisDeleting(false)}>Delete</DeleteTrans>
-          </ButtonWrapper>
-
+          <ButtonWrapper onClick={() => setisDeleting(true)}>D</ButtonWrapper>
+          <DeleteTrans symbol={symbol} show={isDeleting} close={() => setisDeleting(false)} />
+          <ButtonWrapper onClick={() => setisUpdating(true)}>E</ButtonWrapper>
+          <UpdateTrans symbol={symbol} show={isUpdating} close={() => setisUpdating(false)} />
         </TextWrap>
     )
 }

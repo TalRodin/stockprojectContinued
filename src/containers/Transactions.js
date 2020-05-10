@@ -1,15 +1,40 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Form from '../components/getStock/Form'
 import Prices from '../components/getStock/Prices'
 import {firestoreConnect} from 'react-redux-firebase'
 import AddSymbol from './AddSymbol'
-
+import Button from '../components/UI/Button'
 import {compose} from 'redux'
 import {connect} from 'react-redux'
 import Symbol from './Symbol'
 import styled from 'styled-components';
 import Chart from '../LineChart/Chart'
 
+const ButtonWrapper=styled.button`
+    float:left;
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    color: rgba(51,51,51,1);
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    box-shadow: -5px -5px 20px #FFF,  5px 5px 20px #BABECC;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    position:fixed;
+    border-radius: 3px;
+    margin-left:12%;
+    padding:16px;
+    background-color:#f7f7f7;
+    text-shadow: 1px 1px 0 #FFF;
+    &:hover {
+      box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+    }
+    &:active {
+      box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+    }
+`
 const Title=styled.div`
     @import url('https://fonts.googleapis.com/css?family=Lato');
     text-transform: uppercase;
@@ -118,6 +143,7 @@ const WrapperThree=styled.div`
 const API_KEY='FBEEVNPWBGZJJW72'
 
 class Transactions extends React.Component{
+    
     state={
         data:undefined,
         symbol: undefined,
@@ -158,7 +184,9 @@ class Transactions extends React.Component{
             })
         }  
     }
+    
     render(){
+        
         console.log(this.state.data)
         let content;
         let total=0;
@@ -195,6 +223,7 @@ class Transactions extends React.Component{
                         />
                         </WrapperThree>
                     </InlineBlock>
+                   
                     <AddSymbol  total={this.state.count-total}/>
                     
                     </TextWrap>
