@@ -1,13 +1,13 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 import Layout from './layout/Layout'
-import Portfolio from './containers/Portfolio'
-import Transactions from './containers/Transactions'
+// import Portfolio from './containers/Portfolio'
+// import Transactions from './containers/Transactions'
 import Login from './containers/Auth/Login'
 import SignUp from './containers/Auth/SignUp'
 import {connect} from 'react-redux'
 import Logout from './containers/Auth/Logout'
-import Profile from './containers/Auth/Profile'
+// import Profile from './containers/Auth/Profile'
 import VerifyEmail from './containers/Auth/VerifyEmail'
 import styled, { keyframes } from 'styled-components'
 import RecoverPassword from './containers/Auth/RecoverPassword'
@@ -67,7 +67,9 @@ const BackgroundThree = styled.div`
     border-radius: 60% 35% 60% 38% / 33% 23% 77% 67% ;
     animation: 80s ${fadeInThree} infinite linear;
 `
-
+const Transactions = React.lazy(()=>import('./containers/Transactions') )
+const Profile = React.lazy(()=>import('./containers/Auth/Profile'))
+const Portfolio = React.lazy(()=>import('./containers/Portfolio'))
 const App = ({loggedIn,emailVerified}) => {
     let routes;
     if (loggedIn && !emailVerified){
@@ -75,12 +77,14 @@ const App = ({loggedIn,emailVerified}) => {
             <Switch>
                 <Route exact path='/verify-email' component={VerifyEmail}></Route>
                 <Route exact path='/logout' component={Logout}></Route>
+                <Route exact path='/profile' component={Profile}></Route>
                 <Redirect to='/verify-email'/>
             </Switch>
         )
     }
     else if (loggedIn && emailVerified){
         routes=(
+          <Suspense fallback={<div>Loading...</div>}>
             <Switch>
                 <Route exact path='/' component={Transactions}></Route>
                 <Route exact path='/profile' component={Profile}></Route>
@@ -88,6 +92,8 @@ const App = ({loggedIn,emailVerified}) => {
                 <Route exact path='/logout' component={Logout}></Route>
                 <Redirect to='/'/>
             </Switch>
+          </Suspense>
+            
         )
     }
     else{

@@ -193,7 +193,11 @@ class Transactions extends React.Component{
         if(!this.props.symbols){
             content = <p>Loading...</p>
         }
-        else if (!this.props.symbols[this.props.userId] && this.props.requested[`todos/${this.props.userId}`] || this.props.symbols[this.props.userId].todos.length===0){
+        else if (!this.props.symbols[this.props.userId] || !this.props.symbols[this.props.userId].todos)
+        {
+            content = <p>No bought stocks yet</p>
+        }
+        else if (this.props.symbols[this.props.userId].todos.length===0){
             content = <p>No bought stocks yet</p>
         }
         else{
