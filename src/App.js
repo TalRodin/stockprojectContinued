@@ -70,6 +70,7 @@ const BackgroundThree = styled.div`
 const Transactions = React.lazy(()=>import('./containers/Transactions') )
 const Profile = React.lazy(()=>import('./containers/Auth/Profile'))
 const Portfolio = React.lazy(()=>import('./containers/Portfolio'))
+
 const App = ({loggedIn,emailVerified}) => {
     let routes;
     if (loggedIn && !emailVerified){
@@ -102,7 +103,7 @@ const App = ({loggedIn,emailVerified}) => {
             <Route exact path='/login' component={Login}></Route>
             <Route exact path='/signup' component={SignUp}></Route>
             <Route exact path='/recover' component={RecoverPassword}></Route>
-            <Redirect to='/login'/>
+            <Redirect to='/'/>
         </Switch>
         )
     }
@@ -112,7 +113,6 @@ const App = ({loggedIn,emailVerified}) => {
         <BackgroundTwo></BackgroundTwo>
         <BackgroundThree></BackgroundThree>
             {routes}
-        
     </Layout>)
 }
 

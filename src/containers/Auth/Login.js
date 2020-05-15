@@ -7,7 +7,8 @@ import * as actions from '../../store/actions'
 import {connect} from 'react-redux'
 import Message from '../../components/UI/Message'
 import styled from 'styled-components';
-
+// import { Link } from 'react-router-dom';
+import CustomLink from '../../components/UI/CustomLink';
 
 const FormWrapper = styled.div`
     float:center;
@@ -98,6 +99,9 @@ const Login = ({login, loading, error, cleanUp}) =>{
                             type="submit">
                         Login
                     </Button>
+                    <CustomLink link="/recover" color="white">
+                        Forgot your password?
+                    </CustomLink>
                     <Message >{error}</Message>
                 </StyledForm>
             </FormWrapper>

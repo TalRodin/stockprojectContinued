@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Formik, Field, Form} from 'formik'
 import * as Yup from 'yup'
 import { values } from 'd3';
@@ -52,6 +52,11 @@ const RecoverSchema = Yup.object().shape({
 })
 
 const RecoverPassword = ({sendEmail, error, loading, cleanUp}) =>{
+    useEffect(() => {
+        return () => {
+          cleanUp();
+        };
+      }, [cleanUp]);
     return (
         <Formik initialValues = {{
             email: ''
@@ -71,7 +76,7 @@ const RecoverPassword = ({sendEmail, error, loading, cleanUp}) =>{
             <StyledForm>
             <Field type="email" name="email" placeholder="Type your email..." component={Input}/>
             <Button
-            //   disabled={!isValid || isSubmitting}
+              disabled={!isValid || isSubmitting}
               loading={loading ? 'Sending recover email...' : null}
               type="submit"
             >
@@ -92,6 +97,7 @@ const mapStateToProps = ({auth}) =>({
     error:auth.recoverPassword.error
 })
 const mapDispatchToProps ={
-    sendEmail:actions.recoverPassword
+    sendEmail:actions.recoverPassword,
+    cleanUp: actions.clean,
 }
 export default connect(mapStateToProps,mapDispatchToProps)(RecoverPassword)
