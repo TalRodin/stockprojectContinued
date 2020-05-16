@@ -76,7 +76,7 @@ const RecoverPassword = ({sendEmail, error, loading, cleanUp}) =>{
             <StyledForm>
             <Field type="email" name="email" placeholder="Type your email..." component={Input}/>
             <Button
-              disabled={!isValid || isSubmitting}
+            //   disabled={!isValid || isSubmitting}
               loading={loading ? 'Sending recover email...' : null}
               type="submit"
             >

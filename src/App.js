@@ -103,7 +103,7 @@ const App = ({loggedIn,emailVerified}) => {
             <Route exact path='/login' component={Login}></Route>
             <Route exact path='/signup' component={SignUp}></Route>
             <Route exact path='/recover' component={RecoverPassword}></Route>
-            <Redirect to='/'/>
+            <Redirect to='/#'/>
         </Switch>
         )
     }
