@@ -14,7 +14,7 @@ class Axis extends Component {
         const axisType = `axis${this.props.orient}`
         const axis = d3Axis[axisType]()
                 .scale(this.props.scale)
-                .tickSize(-this.props.tickSize)
+                // .tickSize(-this.props.tickSize)
                 .tickPadding(this.props.tickPadding)
                 .ticks(this.props.ticks)
                 .tickFormat(d3.format("d"));

@@ -36,7 +36,7 @@ export default class Line extends Component {
       <g >
         <path
           d={line(data)}
-          fill={'#e3f2fd'}
+          fill={'#fff'}
           stroke={'steelblue'}
           strokeWidth={'1.5'}
           strokeLinejoin={'round'}

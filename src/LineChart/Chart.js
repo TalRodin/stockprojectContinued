@@ -26,9 +26,10 @@ class Chart extends Component {
     let q=this.props.data
     let arr=[]
     if (this.props.data){
+    console.log('~~~~~~~~',Object.keys(this.props.data))
     Object.keys(this.props.data).forEach(function(k,i){
-        
-        arr.push({date:i, y: parseInt(q[k]['4. close']) })
+       
+        arr.push({date:new Date(k), y: parseInt(q[k]['4. close']) })
   })
     }
     console.log(arr)
