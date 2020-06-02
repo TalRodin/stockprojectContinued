@@ -1,6 +1,6 @@
 const theme = {
     colors: {
-        main: '#f7f7f7',
+        main: '#F0F0F3',
     },
     mediaQueries:{
         smallest: `only screen and (max-width: 25em)`,

@@ -25,6 +25,7 @@ const NavItems = ({clicked, loggedIn}) =>{
     else{
         links=(
             <Ul>
+                <NavItem clicked={clicked} link='/home'>Home</NavItem>
                 <NavItem clicked={clicked} link='/login'>Login</NavItem>
                 <NavItem clicked={clicked} link='/signup'>SignUp</NavItem>
             </Ul>  

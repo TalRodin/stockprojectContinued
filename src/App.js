@@ -4,6 +4,7 @@ import Layout from './layout/Layout'
 // import Portfolio from './containers/Portfolio'
 // import Transactions from './containers/Transactions'
 import Login from './containers/Auth/Login'
+import Home from './containers/Home'
 import SignUp from './containers/Auth/SignUp'
 import {connect} from 'react-redux'
 import Logout from './containers/Auth/Logout'
@@ -100,10 +101,11 @@ const App = ({loggedIn,emailVerified}) => {
     else{
         routes=(
         <Switch>
+            <Route exact path='/home' component={Home}></Route>
             <Route exact path='/login' component={Login}></Route>
             <Route exact path='/signup' component={SignUp}></Route>
             <Route exact path='/recover' component={RecoverPassword}></Route>
-            <Redirect to='/#'/>
+            <Redirect to='/home'/>
         </Switch>
         )
     }
