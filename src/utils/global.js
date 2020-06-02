@@ -14,7 +14,7 @@ export default createGlobalStyle`
   html {
     font-size:62.5%;
     box-sizing:border-box;
-    --color-main: ${props => props.theme.colors.main};
+    --color-main: ${props => props.theme.colors.main}
 
     @media ${props => props.theme.mediaQueries.small}{
       font-size: 60%;

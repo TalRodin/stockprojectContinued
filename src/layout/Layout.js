@@ -10,6 +10,7 @@ const MainWrapper=styled.div`
  display: flex;
  align-items:center;
  justify-content:center;
+//  background-color:#F0F0F3;
 `
 
 const Layout = ({children, loggedIn}) =>(

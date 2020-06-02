@@ -18,7 +18,10 @@ display:flex;
 align-items:center;
 justify-content: center;
 `
-
+const Back_Color = styled.div`
+background-color: #F0F0F3;
+height: 700px;
+`
 const root = document.getElementById('root')
 
 
@@ -37,10 +40,11 @@ store.firebaseAuthIsReady.then(()=>{
             <BrowserRouter>
             
             <ThemeProvider theme={theme}>
-                <>
+                {console.log(theme)}
+                <Back_Color>
                     <App />
                     <GlobalStyles/>
-                </>
+                </Back_Color>
             </ThemeProvider>
             
             </BrowserRouter>
