@@ -25,10 +25,10 @@ const Buttonwrap =styled.div`
     @import url('https://fonts.googleapis.com/css?family=Lato');
     font-family: 'Lato', sans-serif;
     // box-shadow: -5px -5px 20px #FFF,  5px 5px 20px #BABECC;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.7) ,-5px -5px 10px rgba(255,255,255,0.1);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.8) ,-5px -5px 10px rgba(255,255,255,0.05);
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    color:aliceblue;
+    color:#F0F0F3;
     background:transparent;
     border: 0;
     outline: 0;
@@ -40,12 +40,13 @@ const Buttonwrap =styled.div`
     // background-color:#f7f7f7;
     background-color:#272727;
     // text-shadow: 1px 1px 0 #FFF;
-    // &:hover {
-    //   box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
-    // }
+    &:hover {
+      box-shadow: -2px -2px 5px rgba(0,0,0,0.7), 2px 2px 5px rgba(255,255,255,0.1);
+    }
     &:active {
     //   box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
     box-shadow: inset 5px 5px 10px rgba(0,0,0,0.7) , inset -5px -5px 10px rgba(255,255,255,0.1);
+   
 }
     
         

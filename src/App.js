@@ -111,9 +111,9 @@ const App = ({loggedIn,emailVerified}) => {
     }
     return (
     <Layout>
-        <BackgroundOne></BackgroundOne>
+        {/* <BackgroundOne></BackgroundOne>
         <BackgroundTwo></BackgroundTwo>
-        <BackgroundThree></BackgroundThree>
+        <BackgroundThree></BackgroundThree> */}
             {routes}
     </Layout>)
 }

@@ -15,22 +15,26 @@ const FormWrapper = styled.div`
     width: 100%;
     max-width: 50rem;
     margin: 0 auto;
+    margin-top: 10%;
     border-radius: 0.7rem;
     padding: 4rem 8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-main);
-    box-shadow:
-        -2.3px -2.3px 3.8px rgba(255,255,255, 0.2),
-        -6.3px -6.3px 10.6px rgba(255,255,255, 0.3),
-        -15.1px -15.1px 25.6px rgba(255,255,255, 0.4),
-        -50px -50px 85px rgba(255,255,255, 0.07),
-        2.3px 2.3px 3.8px rgba(0, 0, 0, 0.024),
-        6.3px 6.3px 10.6px rgba(0, 0, 0, 0.035),
-        15.1px 15.1px 25.6px rgba(0, 0, 0, 0.046),
-        50px 50px 85px rgba(0, 0, 0, 0.07);
+    background-color: #F0F0F3;
+    box-shadow: inset -8px -8px 8px 0 rgba(174, 174, 192, 0.25), inset 8px 8px 8px 0 #fff, -8px -8px 24px 0 #fff, 8px 8px 24px 0 rgba(174, 174, 192, 0.4);
+
+
+    // box-shadow:
+    //     -2.3px -2.3px 3.8px rgba(255,255,255, 0.2),
+    //     -6.3px -6.3px 10.6px rgba(255,255,255, 0.3),
+    //     -15.1px -15.1px 25.6px rgba(255,255,255, 0.4),
+    //     -50px -50px 85px rgba(255,255,255, 0.07),
+    //     2.3px 2.3px 3.8px rgba(0, 0, 0, 0.024),
+    //     6.3px 6.3px 10.6px rgba(0, 0, 0, 0.035),
+    //     15.1px 15.1px 25.6px rgba(0, 0, 0, 0.046),
+    //     50px 50px 85px rgba(0, 0, 0, 0.07);
 `;
 
 const StyledForm = styled(Form)`
@@ -40,6 +44,7 @@ const StyledForm = styled(Form)`
     align-items: center;
     width: 100%;
     flex-direction: column;
+    
 `;
 
 const H=styled.h3`

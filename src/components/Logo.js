@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const LogoWrapper = styled.div`
     padding: 1rem;
-    color: rgba(51,51,51,1);
+    color: #F0F0F3;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.2rem;
@@ -12,14 +12,14 @@ const LogoWrapper = styled.div`
     display: flex;
     height: 100%;
     display-items: center;
-    text-shadow: 1px 1px 1px #FFF;
+    text-shadow: 0px 0px 0px #FFF;
     `
 
 
 const Logo = () =>{
     return (
         <LogoWrapper>
-            Portfolio
+            AR
         </LogoWrapper>
     )
 }
