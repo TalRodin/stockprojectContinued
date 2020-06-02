@@ -18,7 +18,8 @@ const ButtonWrapper=styled.button`
       border-radius: 3rem;
       padding: 1.2rem 2rem;
       background-color:var(--color-main);
-      text-shadow: 1px 1px 0 #FFF;
+      
+      // text-shadow: 1px 1px 0 #FFF;
       &:hover {
         box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
       }
